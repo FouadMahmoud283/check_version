@@ -1,9 +1,11 @@
 name: Daily Version Checker
 
-# Run the workflow every day at midnight (UTC)
 on:
+  # Schedule the workflow to run daily at midnight UTC
   schedule:
     - cron: '0 0 * * *'
+  # Allow manual triggering of the workflow
+  workflow_dispatch:
 
 jobs:
   check-version:
