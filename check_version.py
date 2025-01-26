@@ -14,25 +14,18 @@ def fetch_package_info():
 
     soup = BeautifulSoup(response.text, "html.parser")
 
-    # Find the versions table by headers
-    current_tags_table = None
-    tables = soup.find_all("table")
-    for table in tables:
-        headers = table.find_all("th")
-        header_texts = [header.get_text(strip=True) for header in headers]
-        if "Version" in header_texts and "Tags" in header_texts:
-            current_tags_table = table
-            break
+    # REVERTED: Use your original class name to find the versions table
+    current_tags_table = soup.find("table", {"class": "cab9c622"})
     if not current_tags_table:
-        raise Exception("Could not find the versions table.")
+        raise Exception("Could not find the 'Current Tags' table on the page.")
 
-    # Extract latest version
+    # Extract latest version (your original logic)
     latest_version_tag = current_tags_table.find("a")
     if not latest_version_tag:
         raise Exception("Latest version not found.")
     latest_version = latest_version_tag.text.strip()
 
-    # Extract repository URL
+    # Extract repository URL (keep this new addition)
     repo_link = soup.find("a", {"data-testid": "sidebar__repository"})
     if not repo_link:
         raise Exception("Repository link not found.")
