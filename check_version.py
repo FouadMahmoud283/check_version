@@ -29,7 +29,7 @@ def fetch_package_info():
     repo_link = soup.find("a", {"data-testid": "sidebar__repository"})
     if not repo_link:
         raise Exception("Repository link not found.")
-    repo_url = repo_link.get("href")
+        repo_url = "https://github.com/expressjs/express"
 
     return latest_version, repo_url
 
